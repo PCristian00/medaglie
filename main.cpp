@@ -17,8 +17,16 @@ int contaRighe(const char *nomefile) {
     fstream in;
     in.open(nomefile, ios::in); // ERRORE: messo solo un set di punti e virgola
     int c = 0;
-    while (in.good()) c++;
+    char line[20];
+    cout<<c<<endl;
+
+    while (in.good()) {
+        cout<<c<<endl;
+        c++;
+    }
+
     in.close();
+    cout<<c;
     return c;
 // 3/4 Punti
 }
@@ -44,25 +52,27 @@ secondo i seguenti criteri:
 – a parità di ori e argenti, numero di bronzi. */
 void ordinaNazioni(nazione nazionali[], int n) {
     //ERRORE abb. grave: ho scritto n[] anziche nazionali[] ad ogni cosa
+    // ERRORE : avevo ordinati al contrario
+
+    // forse ho ordinato al contrario
     nazione tmp{};
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            if (nazionali[j].ori > nazionali[i].ori) {
+            if (nazionali[j].ori < nazionali[i].ori) {
                 tmp = nazionali[i];
                 nazionali[i] = nazionali[j];
                 nazionali[j] = tmp;
             } else if (nazionali[j].ori == nazionali[i].ori)
-                if (nazionali[j].argenti > nazionali[j].argenti) {
+                if (nazionali[j].argenti < nazionali[j].argenti) {
                     tmp = nazionali[i];
                     nazionali[i] = nazionali[j];
                     nazionali[j] = tmp;
                 } else if (nazionali[j].argenti == nazionali[i].argenti)
-                    if (nazionali[j].bronzi > nazionali[j].bronzi) {
+                    if (nazionali[j].bronzi < nazionali[j].bronzi) {
                         tmp = nazionali[i];
                         nazionali[i] = nazionali[j];
                         nazionali[j] = tmp;
                     }
-
 // 2/4 Punti
 }
 
@@ -70,11 +80,11 @@ void ordinaNazioni(nazione nazionali[], int n) {
 di esecuzione. Ogni colonna ha l'intestazione “Ori”, “Argenti”, “Bronzi”,
 come nell'esempio di esecuzione. */
 void stampaMedagliere(nazione nazionali[], int n) {
-    cout << "\t \t Ori \t Argenti";
+    cout << "\tOri \t Argenti";
     cout << "\t Bronzi" << endl;
 
     for (int i = 0; i < n; i++) {
-        cout << nazionali[i].ori << "\t" << nazionali[i].argenti << "\t";
+        cout <<nazionali[i].nome<<"\t"<< nazionali[i].ori << "\t" << nazionali[i].argenti << "\t";
         cout << nazionali[i].bronzi << endl;
     }
 // 3 Punti
@@ -82,10 +92,13 @@ void stampaMedagliere(nazione nazionali[], int n) {
 
 // Programma principale
 int main() {
-    int size = contaRighe("C:\\Users\\Thinkpad User\\CLionProjects\\medaglie\\medagliere.txt");
-    cout<<size;
+    //int size = contaRighe("C:\\Users\\Thinkpad User\\CLionProjects\\medaglie\\medagliere.txt");
+    int size=7;
+    //cout<<size;
     nazione nazionali[size];
     leggiFile(nazionali, "C:\\Users\\Thinkpad User\\CLionProjects\\medaglie\\medagliere.txt");
+    stampaMedagliere(nazionali, size);
+    cout<<endl;
     ordinaNazioni(nazionali, size);
     stampaMedagliere(nazionali, size);
     return 0;
