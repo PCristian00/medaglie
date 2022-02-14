@@ -1,0 +1,7 @@
+Italia 2 4 1
+Cina 3 2 0
+Norvegia 4 1 4
+PaesiBassi 3 3 1
+Svezia 4 1 2
+Austria 2 4 2
+ROC 2 3 5
